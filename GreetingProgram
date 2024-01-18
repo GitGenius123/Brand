@@ -1,0 +1,8 @@
+function greetUser() {
+    var userName = prompt("Enter your name:");
+    var greetingMessage = "Hello, " + userName + "!";
+    alert(greetingMessage);
+}
+
+// Call the greetUser function
+greetUser();
