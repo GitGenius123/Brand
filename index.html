@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Clicking Game</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            text-align: center;
+            font-family: 'Oswald', sans-serif;
+            margin-top: 152px;
+            background-image: url(https://img.freepik.com/free-vector/space-background-with-landscape-alien-planet_107791-1125.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        #score {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+
+        #startButton,
+        #resetButton,
+        #restartButton {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: 4px solid black;
+            cursor: pointer;
+            color: black;
+            background-color: lime;
+        }
+
+        #clickButton {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: 4px solid black;
+            cursor: pointer;
+            color: black;
+            background-color: rgb(0, 33, 249);
+            border-radius: 10px;
+        }
+
+        #clickButton:hover {
+            background-color: rgb(108, 128, 255);
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="margin-top: 46px;color: rgb(6 0 175);font-size: 69px;">Clicking Game</h1>
+    <p>Click the button as many times as you can within 10 seconds!</p>
+    <button id="startButton" onclick="startGame()">Start Game</button>
+    <button id="clickButton" onclick="countClicks()" disabled>Click Me!</button>
+    <button id="resetButton" onclick="resetGame()" disabled>Reset Game</button>
+    <button id="restartButton" onclick="restartGame()" disabled>Restart Game</button>
+    <p id="score">Score: <span id="clickCount">0</span></p>
+
+    <script>
+        let clicks = 0;
+        let timeLeft = 10;
+        let timerId;
+
+        function countClicks() {
+            clicks++;
+            document.getElementById('clickCount').innerText = clicks;
+        }
+
+        function startGame() {
+            clicks = 0;
+            timeLeft = 10;
+            document.getElementById('clickCount').innerText = clicks;
+            document.getElementById('startButton').disabled = true;
+            document.getElementById('clickButton').disabled = false;
+            document.getElementById('resetButton').disabled = false;
+            document.getElementById('restartButton').disabled = true;
+            startTimer();
+        }
+
+        function resetGame() {
+            clearInterval(timerId);
+            document.getElementById('clickButton').disabled = true;
+            document.getElementById('resetButton').disabled = true;
+            document.getElementById('restartButton').disabled = false;
+            alert(`Game reset!`);
+        }
+
+        function restartGame() {
+            clearInterval(timerId);
+            document.getElementById('clickButton').disabled = false;
+            document.getElementById('resetButton').disabled = false;
+            document.getElementById('restartButton').disabled = true;
+            startGame();
+        }
+
+        function startTimer() {
+            timerId = setInterval(updateTimer, 1000);
+        }
+
+        function updateTimer() {
+            if (timeLeft > 0) {
+                timeLeft--;
+                document.getElementById('score').innerText = `Time Left: ${timeLeft} sec`;
+            } else {
+                endGame();
+            }
+        }
+
+        function endGame() {
+            clearInterval(timerId);
+            document.getElementById('clickButton').disabled = true;
+            document.getElementById('resetButton').disabled = true;
+            document.getElementById('restartButton').disabled = false;
+            alert(`Game Over! Your score is ${clicks} clicks in 10 seconds.`);
+        }
+
+    </script>
+</body>
+
+</html>
