@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Game</title>
+    <style>
+        body {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            /* background-size: cover; */
+            width: 90%;
+            height: 80%;
+            top: 8%;
+            background-color: rgb(219, 219, 219);
+            right: 32%;
+            font-family: Arial, sans-serif;
+            background-repeat: no-repeat;
+            background-image: url(https://img.freepik.com/premium-photo/white-background-hd-transparent-background-png-stock-photographic-image_853645-50741.jpg);
+        }
+
+
+        .game-area {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 8%;
+            right: 100%;
+
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(4, 100px);
+            grid-gap: 10px;
+
+        }
+
+        .card {
+            width: 100px;
+            height: 100px;
+            border: 10px solid #000;
+            text-align: center;
+            line-height: 100px;
+            cursor: pointer;
+            border-color: rgb(255, 38, 0);
+            box-sizing: border-box;
+            margin: 3px;
+        }
+
+        .card {
+            margin: 3px;
+            background-color: rgb(241, 233, 233);
+        }
+
+        h1 {
+            position: absolute;
+            margin: -375px;
+            top: -50%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Flip Cards</h1>
+
+    <div class="game-area">
+        <div class="cards" id="cards">
+
+        </div>
+    </div>
+
+
+    <script>
+        const cardsContainer = document.getElementById('cards');
+
+        const icons = ['🍎', '🍊', '🍋', '🍉', '🍇', '🍒', '🍍', '🍓'];
+
+        const cards = icons.concat(icons).sort(() => 0.5 - Math.random());
+
+        let flippedCard = false;
+        let firstCard, secondCard;
+
+        function startGame() {
+            createCards();
+        }
+
+        function createCards() {
+            cards.forEach(icon => {
+                const card = document.createElement('div');
+                card.classList.add('card');
+                card.dataset.icon = icon;
+                card.innerText = '';
+                card.addEventListener('click', flipCard);
+                cardsContainer.appendChild(card);
+            });
+        }
+
+        function flipCard() {
+            this.innerText = this.dataset.icon;
+
+            if (!flippedCard) {
+                flippedCard = true;
+                firstCard = this;
+            } else {
+                flippedCard = false;
+                secondCard = this;
+
+                checkMatch();
+            }
+        }
+
+        function checkMatch() {
+            if (firstCard.dataset.icon === secondCard.dataset.icon) {
+                firstCard.removeEventListener('click', flipCard);
+                secondCard.removeEventListener('click', flipCard);
+            } else {
+                setTimeout(() => {
+                    firstCard.innerText = '';
+                    secondCard.innerText = '';
+                }, 300);
+            }
+        }
+
+        window.onload = startGame;
+
+    </script>
+</body>
+
+</html>
