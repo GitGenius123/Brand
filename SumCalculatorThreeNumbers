@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+public class SumCalculatorThreeNumbers {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Sum Calculator for Three Numbers");
+
+        // Input for the first number
+        System.out.print("Enter the first number: ");
+        double num1 = scanner.nextDouble();
+
+        // Input for the second number
+        System.out.print("Enter the second number: ");
+        double num2 = scanner.nextDouble();
+
+        // Input for the third number
+        System.out.print("Enter the third number: ");
+        double num3 = scanner.nextDouble();
+
+        // Calculate the sum
+        double sum = calculateSum(num1, num2, num3);
+
+        // Display the result
+        System.out.println("The sum of the three numbers is: " + sum);
+
+        // Close the scanner
+        scanner.close();
+    }
+
+    // Function to calculate the sum of three numbers
+    public static double calculateSum(double num1, double num2, double num3) {
+        return num1 + num2 + num3;
+    }
+}
