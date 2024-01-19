@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+public class AverageCalculator {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Average Calculator");
+
+        // Input for the first number
+        System.out.print("Enter the first number: ");
+        int num1 = scanner.nextInt();
+
+        // Input for the second number
+        System.out.print("Enter the second number: ");
+        int num2 = scanner.nextInt();
+
+        // Calculate the average
+        double average = calculateAverage(num1, num2);
+
+        // Display the result
+        System.out.println("The average of the two numbers is: " + average);
+
+        // Close the scanner
+        scanner.close();
+    }
+
+    // Function to calculate the average of two numbers
+    public static double calculateAverage(int num1, int num2) {
+        return (num1 + num2) / 2.0;
+    }
+}
