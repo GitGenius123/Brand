@@ -1,0 +1,28 @@
+import java.util.Scanner;
+
+public class StringLengthCalculator {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("String Length Calculator");
+
+        // Input for the string
+        System.out.print("Enter a string: ");
+        String inputString = scanner.nextLine();
+
+        // Calculate the length of the string
+        int length = calculateStringLength(inputString);
+
+        // Display the result
+        System.out.println("The length of the entered string is: " + length);
+
+        // Close the scanner
+        scanner.close();
+    }
+
+    // Function to calculate the length of a string
+    public static int calculateStringLength(String inputString) {
+        return inputString.length();
+    }
+}
